@@ -1,6 +1,6 @@
 const app = function(){
 
-    const api = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson";
+    const api = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
     makeRequest(api, requestComplete);
 };
 
