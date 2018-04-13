@@ -28,7 +28,10 @@ const displayQuakeData = function(quakesArray){
   const ul = document.querySelector("#quakelist");
   for(let quake of quakesArray){
     const li = document.createElement('li');
+    const li1 = document.createElement('li1');
     li.innerText = quake.properties.place;
+    li1.innerText = `of ${quake.properties.mag} magnitude` ;
     ul.appendChild(li);
+    ul.appendChild(li1);
   };
 };
