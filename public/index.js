@@ -20,15 +20,15 @@ const requestComplete = function(){
   if(this.status !== 200) return;
     const jsonString = this.responseText;
     const quakes = JSON.parse(jsonString);
-    console.log(quakes);
-    displayQuakeData(quakes);
+    const quakesArray = quakes.features;
+    displayQuakeData(quakesArray);
 };
 
-const displayQuakeData = function(quakes){
+const displayQuakeData = function(quakesArray){
   const ul = document.querySelector("#quakelist");
-  for(quake of quakes){
+  for(let quake of quakesArray){
     const li = document.createElement('li');
-    li.innerText = quake.features.properties[place];
+    li.innerText = quake.properties.place;
     ul.appendChild(li);
   };
 };
