@@ -66,16 +66,16 @@ const quakeInfo = function (quake) {
   div.appendChild(quakeEpicentre);
   div.appendChild(quakeMagnitude);
   div.appendChild(quakePage);
-  addMarker(quake);
+  // addMarker(quake);
   return div
 }
 
-const addMarker = function(quake){
-  const container = document.getElementById('quake-map')
-  const center = quake.geometry.coordinates;
-  const map = new MapMaker(container, center, 5)
-  map.addMarker(center)
-}
+// const addMarker = function(quake){
+//   const container = document.getElementById('quake-map')
+//   const center = quake.geometry.coordinates;
+//   const map = new MapMaker(container, center, 5)
+//   map.addMarker(center)
+// }
 
 const clearContent = function(node){
   while (node.hasChildNodes()) {
@@ -120,7 +120,7 @@ const quakeInfoTiny = function (quake) {
   div.appendChild(quakeEpicentre);
   div.appendChild(quakeMagnitude);
   div.appendChild(quakePage);
-  addMarker(quake);
+  // addMarker(quake);
   return div
 }
 
@@ -174,7 +174,7 @@ const quakeInfoSml = function (quake) {
   div.appendChild(quakeEpicentre);
   div.appendChild(quakeMagnitude);
   div.appendChild(quakePage);
-  addMarker(quake);
+  // addMarker(quake);
   return div
 }
 
@@ -229,7 +229,7 @@ const quakeInfoMed = function (quake) {
   div.appendChild(quakeEpicentre);
   div.appendChild(quakeMagnitude);
   div.appendChild(quakePage);
-  addMarker(quake);
+  // addMarker(quake);
   return div
 }
 
@@ -283,7 +283,7 @@ const quakeInfoLge = function (quake) {
   div.appendChild(quakeEpicentre);
   div.appendChild(quakeMagnitude);
   div.appendChild(quakePage);
-  addMarker(quake);
+  // addMarker(quake);
   return div
 }
 
@@ -337,6 +337,6 @@ const quakeInfoSig = function (quake) {
   div.appendChild(quakeEpicentre);
   div.appendChild(quakeMagnitude);
   div.appendChild(quakePage);
-  addMarker(quake);
+  // addMarker(quake);
   return div
 }
