@@ -27,6 +27,16 @@ const requestCompleteAll = function(){
     displayQuakeData(quakesArray);
 };
 
+const displayQuakeData = function(quakesArray){
+  const select = document.getElementById('quakelist-select')
+  quakesArray.forEach(function(quake, index) {
+    let option = document.createElement('option')
+    option.innerText = quake.properties.place;
+    option.value = index
+    select.appendChild(option)
+  })
+};
+
 //SMALLL EARTHQUAKES
 const makeRequestSmall = function(api, callback){
   const request = new XMLHttpRequest();
@@ -55,15 +65,3 @@ const displayQuakeDataSml = function(quakesArraySml){
     select.appendChild(option)
   })
 }
-
-const displayQuakeData = function(quakesArray){
-  const button = document.querySelector("#quakelist");
-  for(let quake of quakesArray){
-    const li = document.createElement('li');
-    const li1 = document.createElement('li1');
-    li.innerText = quake.properties.place;
-    li1.innerText = `of ${quake.properties.mag} magnitude` ;
-    ul.appendChild(li);
-    ul.appendChild(li1);
-  };
-};
