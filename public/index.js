@@ -33,7 +33,7 @@ const requestCompleteAll = function(){
     displayQuakeData(quakesArray);
     displayQuakeInfo(quakesArray);
     displayQuakeDataTiny(quakesArray);
-    displayQuakeInfo(quakesArrayTiny);
+    displayQuakeInfoTiny(quakesArrayTiny);
 };
 
 const displayQuakeData = function(quakesArray){
@@ -46,11 +46,11 @@ const displayQuakeData = function(quakesArray){
   })
 };
 
-const displayQuakeInfo = function (quakes) {
+const displayQuakeInfo = function (quakesArray) {
   const selectedEarthquake = document.querySelector('select')
   selectedEarthquake.addEventListener('change', function() {
-    let quake = quakes[this.value]
-    quakeInfo(quake)
+    let quake = quakesArray[this.value]
+    quakeInfoAll(quake)
   })
 }
 
@@ -73,8 +73,14 @@ const quakeInfo = function (quake) {
 const addMarker = function(quake){
   const container = document.getElementById('quake-map')
   const center = quake.geometry.coordinates;
-  const map = new MapWrapper(container, center, 5)
+  const map = new MapMaker(container, center, 5)
   map.addMarker(center)
+}
+
+const clearContent = function(node){
+  while (node.hasChildNodes()) {
+    node.removeChild(node.lastChild);
+  }
 }
 
 //TINY EARTHQUAKES
@@ -95,7 +101,28 @@ const displayQuakeDataTiny = function(quakesArray){
   })
 };
 
-
+const displayQuakeInfoTiny = function (quakesArrayTiny) {
+  const selectedEarthquake = document.querySelector('select')
+  selectedEarthquake.addEventListener('change', function() {
+    let quake = quakesArrayTiny[this.value]
+    quakeInfoTiny(quake)
+  })
+}
+const quakeInfoTiny = function (quake) {
+  const div = document.getElementById('quakeTiny-details')
+  clearContent(div)
+  const quakeEpicentre = document.createElement('p')
+  quakeEpicentre.innerText = `Epicentre: ${quake.properties.place}`
+  const quakeMagnitude = document.createElement('p')
+  quakeMagnitude.innerText = `Magnitude: ${quake.properties.mag}`
+  const quakePage = document.createElement('p')
+  quakePage.innerText = `Further Information: ${quake.properties.url}`
+  div.appendChild(quakeEpicentre);
+  div.appendChild(quakeMagnitude);
+  div.appendChild(quakePage);
+  addMarker(quake);
+  return div
+}
 
 //SMALL EARTHQUAKES
 const makeRequestSmall = function(api, callback){
@@ -114,7 +141,7 @@ const requestCompleteSml = function(){
     const quakes = JSON.parse(jsonString);
     const quakesArraySml = quakes.features;
     displayQuakeDataSml(quakesArraySml);
-    displayQuakeInfo(quakesArraySml);
+    displayQuakeInfoSml(quakesArraySml);
 };
 
 const displayQuakeDataSml = function(quakesArraySml){
@@ -125,6 +152,30 @@ const displayQuakeDataSml = function(quakesArraySml){
     option.value = index
     select.appendChild(option)
   })
+}
+
+const displayQuakeInfoSml = function (quakesArraySml) {
+  const selectedEarthquake = document.querySelector('select')
+  selectedEarthquake.addEventListener('change', function() {
+    let quake = quakesArraySml[this.value]
+    quakeInfoSml(quake)
+  })
+}
+
+const quakeInfoSml = function (quake) {
+  const div = document.getElementById('quakeSmall-details')
+  clearContent(div)
+  const quakeEpicentre = document.createElement('p')
+  quakeEpicentre.innerText = `Epicentre: ${quake.properties.place}`
+  const quakeMagnitude = document.createElement('p')
+  quakeMagnitude.innerText = `Magnitude: ${quake.properties.mag}`
+  const quakePage = document.createElement('p')
+  quakePage.innerText = `Further Information: ${quake.properties.url}`
+  div.appendChild(quakeEpicentre);
+  div.appendChild(quakeMagnitude);
+  div.appendChild(quakePage);
+  addMarker(quake);
+  return div
 }
 
 
@@ -145,7 +196,7 @@ const requestCompleteMed = function(){
     const quakes = JSON.parse(jsonString);
     const quakesArrayMed = quakes.features;
     displayQuakeDataMed(quakesArrayMed);
-    displayQuakeInfo(quakesArrayMed);
+    displayQuakeInfoMed(quakesArrayMed);
 };
 
 const displayQuakeDataMed = function(quakesArrayMed){
@@ -158,6 +209,29 @@ const displayQuakeDataMed = function(quakesArrayMed){
   })
 }
 
+const displayQuakeInfoMed = function (quakesArrayMed) {
+  const selectedEarthquake = document.querySelector('select')
+  selectedEarthquake.addEventListener('change', function() {
+    let quake = quakesArrayMed[this.value]
+    quakeInfoMed(quake)
+  })
+}
+
+const quakeInfoMed = function (quake) {
+  const div = document.getElementById('quakeMed-details')
+  clearContent(div)
+  const quakeEpicentre = document.createElement('p')
+  quakeEpicentre.innerText = `Epicentre: ${quake.properties.place}`
+  const quakeMagnitude = document.createElement('p')
+  quakeMagnitude.innerText = `Magnitude: ${quake.properties.mag}`
+  const quakePage = document.createElement('p')
+  quakePage.innerText = `Further Information: ${quake.properties.url}`
+  div.appendChild(quakeEpicentre);
+  div.appendChild(quakeMagnitude);
+  div.appendChild(quakePage);
+  addMarker(quake);
+  return div
+}
 
 //LARGE EARTHQUAKES
 const makeRequestLge = function(api, callback){
@@ -176,7 +250,7 @@ const requestCompleteLge = function(){
     const quakes = JSON.parse(jsonString);
     const quakesArrayLge = quakes.features;
     displayQuakeDataLge(quakesArrayLge);
-    displayQuakeInfo(quakesArrayLge);
+    displayQuakeInfoLge(quakesArrayLge);
 };
 
 const displayQuakeDataLge = function(quakesArrayLge){
@@ -187,6 +261,30 @@ const displayQuakeDataLge = function(quakesArrayLge){
     option.value = index
     select.appendChild(option)
   })
+}
+
+const displayQuakeInfoLge = function (quakesArrayLge) {
+  const selectedEarthquake = document.querySelector('select')
+  selectedEarthquake.addEventListener('change', function() {
+    let quake = quakesArrayLge[this.value]
+    quakeInfoLge(quake)
+  })
+}
+
+const quakeInfoLge = function (quake) {
+  const div = document.getElementById('quakeLge-details')
+  clearContent(div)
+  const quakeEpicentre = document.createElement('p')
+  quakeEpicentre.innerText = `Epicentre: ${quake.properties.place}`
+  const quakeMagnitude = document.createElement('p')
+  quakeMagnitude.innerText = `Magnitude: ${quake.properties.mag}`
+  const quakePage = document.createElement('p')
+  quakePage.innerText = `Further Information: ${quake.properties.url}`
+  div.appendChild(quakeEpicentre);
+  div.appendChild(quakeMagnitude);
+  div.appendChild(quakePage);
+  addMarker(quake);
+  return div
 }
 
 //SIGNIFICANT EARTHQUAKES
@@ -217,4 +315,28 @@ const displayQuakeDataSig = function(quakesArraySig){
     option.value = index
     select.appendChild(option)
   })
+}
+
+const displayQuakeInfoSig = function (quakesArraySig) {
+  const selectedEarthquake = document.querySelector('select')
+  selectedEarthquake.addEventListener('change', function() {
+    let quake = quakesArraySig[this.value]
+    quakeInfo(quake)
+  })
+}
+
+const quakeInfoSig = function (quake) {
+  const div = document.getElementById('quakeSig-details')
+  clearContent(div)
+  const quakeEpicentre = document.createElement('p')
+  quakeEpicentre.innerText = `Epicentre: ${quake.properties.place}`
+  const quakeMagnitude = document.createElement('p')
+  quakeMagnitude.innerText = `Magnitude: ${quake.properties.mag}`
+  const quakePage = document.createElement('p')
+  quakePage.innerText = `Further Information: ${quake.properties.url}`
+  div.appendChild(quakeEpicentre);
+  div.appendChild(quakeMagnitude);
+  div.appendChild(quakePage);
+  addMarker(quake);
+  return div
 }

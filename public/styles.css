@@ -19,8 +19,7 @@ button {
     font-size: 16px;
 }
 
-
-div.quakelist-select{
-  height: 250px;
-  width: 250px;
+div#quake-map:active{
+  height: 300px;
+  width:300px;
 }
