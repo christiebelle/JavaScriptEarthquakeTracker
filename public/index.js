@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 const app = function(){
 
     const api = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
