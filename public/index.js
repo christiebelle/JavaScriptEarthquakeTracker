@@ -2,13 +2,15 @@ const app = function(){
 
     const api = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
     const apiS = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson";
+    const apiM = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson";
     makeRequestAll(api, requestCompleteAll);
     makeRequestSmall(apiS, requestCompleteSml);
+    makeRequestMed(apiM, requestCompleteMed);
 };
 
 window.addEventListener('load', app);
 
-//ALL EARTHQUAKES
+//ALL EARTHQUAKES AND MAIN FUNCTIONALITY
 const makeRequestAll = function(api, callback){
   const request = new XMLHttpRequest();
   //open request.
@@ -25,6 +27,7 @@ const requestCompleteAll = function(){
     const quakes = JSON.parse(jsonString);
     const quakesArray = quakes.features;
     displayQuakeData(quakesArray);
+    displayQuakeInfo(quakesArray);
 };
 
 const displayQuakeData = function(quakesArray){
@@ -57,11 +60,10 @@ const quakeInfo = function (quake) {
   div.appendChild(quakeEpicentre);
   div.appendChild(quakeMagnitude);
   div.appendChild(quakePage);
-  // addPin(country)
   return div
 }
 
-//SMALLL EARTHQUAKES
+//SMALL EARTHQUAKES
 const makeRequestSmall = function(api, callback){
   const request = new XMLHttpRequest();
   //open request.
@@ -91,30 +93,33 @@ const displayQuakeDataSml = function(quakesArraySml){
   })
 }
 
-// const displayQuakeInfo = function (quakes) {
-//   const selectedEarthquake = document.querySelector('select')
-//   selectedEarthquake.addEventListener('change', function() {
-//     let quake = quakesArraySml[this.value]
-//     quakeInfo(quake)
-//   })
-// }
-//
-// const quakeInfo = function (quake) {
-//   const div = document.getElementById('country-details')
-//   clearContent(div)
-//   const countryName = document.createElement('p')
-//   countryName.innerText = `Country: ${country.name}`
-//   const countryPop = document.createElement('p')
-//   countryPop.innerText = `Population: ${country.population}`
-//   const countryCapital = document.createElement('p')
-//   countryCapital.innerText = `Captial City: ${country.capital}`
-//   const countryFlag = document.createElement('img')
-//   countryFlag.src = country.flag
-//   div.appendChild(countryName)
-//   div.appendChild(countryPop)
-//   div.appendChild(countryCapital)
-//   div.appendChild(countryFlag)
-//   addPin(country)
-//   borderingCountries(country)
-//   return div
-// }
+
+//MEDIUM EARTHQUAKES
+const makeRequestMed = function(api, callback){
+  const request = new XMLHttpRequest();
+  //open request.
+  request.open("GET", api);
+  //what to do when we get a response.
+  request.addEventListener("load", callback)
+  //tell it to run.
+  request.send();
+};
+
+const requestCompleteMed = function(){
+  if(this.status !== 200) return;
+    const jsonString = this.responseText;
+    const quakes = JSON.parse(jsonString);
+    const quakesArrayMed = quakes.features;
+    displayQuakeDataMed(quakesArrayMed);
+    displayQuakeInfo(quakesArrayMed);
+};
+
+const displayQuakeDataMed = function(quakesArrayMed){
+  const select = document.getElementById('quakelistMed-select')
+  quakesArrayMed.forEach(function(quake, index) {
+    let option = document.createElement('option')
+    option.innerText = quake.properties.place;
+    option.value = index
+    select.appendChild(option)
+  })
+}
