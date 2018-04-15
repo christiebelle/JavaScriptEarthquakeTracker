@@ -70,9 +70,10 @@ window.addEventListener('load', app);
 
 const addMarker = function(quake){
   const container = document.getElementById('quake-map')
-  const center = quake.geometry.coordinates;
-  const map = new MapMaker(container, center, 5)
-  map.addMarker(center)
+  const long = quake.geometry.coordinates[0];
+  const lat = quake.geometry.coordinates[1];
+  const map = new MapMaker(container, lat, long, 10);
+  map.addMarker(lat, long)
 }
 
 const clearContent = function(node){
