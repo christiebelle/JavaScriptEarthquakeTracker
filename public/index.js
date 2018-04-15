@@ -279,7 +279,7 @@ const displayQuakeInfoSig = function (quakesArraySig) {
   const selectedEarthquake = document.querySelector('select')
   selectedEarthquake.addEventListener('change', function() {
     let quake = quakesArraySig[this.value]
-    quakeInfo(quake)
+    quakeInfoSig(quake);
   })
 }
 
