@@ -3,9 +3,13 @@ const app = function(){
     const api = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
     const apiS = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson";
     const apiM = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson";
+    const apiL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson";
+    const apiSig = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson";
     makeRequestAll(api, requestCompleteAll);
+    makeRequestSig(apiSig, requestCompleteSig);
     makeRequestSmall(apiS, requestCompleteSml);
     makeRequestMed(apiM, requestCompleteMed);
+    makeRequestLge(apiL, requestCompleteLge);
 };
 
 window.addEventListener('load', app);
@@ -117,6 +121,67 @@ const requestCompleteMed = function(){
 const displayQuakeDataMed = function(quakesArrayMed){
   const select = document.getElementById('quakelistMed-select')
   quakesArrayMed.forEach(function(quake, index) {
+    let option = document.createElement('option')
+    option.innerText = quake.properties.place;
+    option.value = index
+    select.appendChild(option)
+  })
+}
+
+
+//LARGE EARTHQUAKES
+const makeRequestLge = function(api, callback){
+  const request = new XMLHttpRequest();
+  //open request.
+  request.open("GET", api);
+  //what to do when we get a response.
+  request.addEventListener("load", callback)
+  //tell it to run.
+  request.send();
+};
+
+const requestCompleteLge = function(){
+  if(this.status !== 200) return;
+    const jsonString = this.responseText;
+    const quakes = JSON.parse(jsonString);
+    const quakesArrayLge = quakes.features;
+    displayQuakeDataLge(quakesArrayLge);
+    displayQuakeInfo(quakesArrayLge);
+};
+
+const displayQuakeDataLge = function(quakesArrayLge){
+  const select = document.getElementById('quakelistLge-select')
+  quakesArrayLge.forEach(function(quake, index) {
+    let option = document.createElement('option')
+    option.innerText = quake.properties.place;
+    option.value = index
+    select.appendChild(option)
+  })
+}
+
+//SIGNIFICANT EARTHQUAKES
+const makeRequestSig = function(api, callback){
+  const request = new XMLHttpRequest();
+  //open request.
+  request.open("GET", api);
+  //what to do when we get a response.
+  request.addEventListener("load", callback)
+  //tell it to run.
+  request.send();
+};
+
+const requestCompleteSig = function(){
+  if(this.status !== 200) return;
+    const jsonString = this.responseText;
+    const quakes = JSON.parse(jsonString);
+    const quakesArraySig = quakes.features;
+    displayQuakeDataSig(quakesArraySig);
+    displayQuakeInfo(quakesArraySig);
+};
+
+const displayQuakeDataSig = function(quakesArraySig){
+  const select = document.getElementById('quakelistSig-select')
+  quakesArraySig.forEach(function(quake, index) {
     let option = document.createElement('option')
     option.innerText = quake.properties.place;
     option.value = index
