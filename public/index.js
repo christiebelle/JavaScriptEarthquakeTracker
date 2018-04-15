@@ -32,6 +32,8 @@ const requestCompleteAll = function(){
     const quakesArray = quakes.features;
     displayQuakeData(quakesArray);
     displayQuakeInfo(quakesArray);
+    displayQuakeDataTiny(quakesArray);
+    displayQuakeInfo(quakesArrayTiny);
 };
 
 const displayQuakeData = function(quakesArray){
@@ -66,6 +68,26 @@ const quakeInfo = function (quake) {
   div.appendChild(quakePage);
   return div
 }
+
+//TINY EARTHQUAKES
+const displayQuakeDataTiny = function(quakesArray){
+  const quakesArrayTiny = [];
+  quakesArray.forEach(function(quake, index){
+  if(quake.properties.mag < 1.0){
+    quakesArrayTiny.push(quake);
+  };
+  return quakesArrayTiny;
+  });
+  const select = document.getElementById('quakelistTiny-select')
+  quakesArrayTiny.forEach(function(quake, index) {
+    let option = document.createElement('option')
+    option.innerText = quake.properties.place;
+    option.value = index
+    select.appendChild(option)
+  })
+};
+
+
 
 //SMALL EARTHQUAKES
 const makeRequestSmall = function(api, callback){
