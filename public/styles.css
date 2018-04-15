@@ -1,0 +1,20 @@
+h1{
+  display: flex;
+  justify-content: center;
+}
+
+p{
+  display: flex;
+  justify-content: center;
+}
+
+button {
+    display: inline-table;
+    background-color: #315233;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}

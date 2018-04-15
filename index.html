@@ -4,10 +4,32 @@
     <link rel="stylesheet" href="styles.css">
     <title>EarthQuake Tracker</title>
     <script src='index.js'></script>
+    <script src="lodash.js"></script>
   </head>
   <body>
-    <h1>Earthquake Details</h1>
-    <ul id='quakelist'>
-    </ul>
-  </body>
+    <h1>Earthquake Tracker</h1>
+      <p>Welcome to the Earthquake Tracker.</p>
+      <br>
+      <p id='introlines'>Using real time data from the US Geological Survey, we can track and plot seismic
+        activity across the globe.</p>
+        <br>
+      <p>Select from the options below to get started:</p>
+    <button id='quakelist'>View All Earthquakes</button>
+    <br>
+    <p>Choose by location:</p>
+    <button id='quakelistAS'>Africa</button>
+    <button id='quakelistAS'>Antarctica</button>
+    <button id='quakelistAS'>Asia</button>
+    <button id='quakelistAS'>Europe</button>
+    <button id='quakelistNA'>North America</button>
+    <button id='quakelistAS'>Oceania</button>
+    <button id='quakelistSA'>South America</button>
+    <br>
+    <p>Choose by magnitude:</p>
+    <button id='quakelistTiny'>Magnitude 0.0+</button>
+    <button id='quakelistSmall'>Magnitude 1.0+</button>
+    <button id='quakelistMed'>Magnitude 2.5+</button>
+    <button id='quakelistLga'>Magnitude 4.5+</button>
+    <br>
+    </body>
 </html>
