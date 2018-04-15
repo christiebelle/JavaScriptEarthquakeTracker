@@ -66,7 +66,15 @@ const quakeInfo = function (quake) {
   div.appendChild(quakeEpicentre);
   div.appendChild(quakeMagnitude);
   div.appendChild(quakePage);
+  addMarker(quake);
   return div
+}
+
+const addMarker = function(quake){
+  const container = document.getElementById('quake-map')
+  const center = quake.geometry.coordinates;
+  const map = new MapWrapper(container, center, 5)
+  map.addMarker(center)
 }
 
 //TINY EARTHQUAKES
