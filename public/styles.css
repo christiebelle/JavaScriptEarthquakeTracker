@@ -18,8 +18,3 @@ button {
     text-decoration: none;
     font-size: 16px;
 }
-
-div#quake-map:active{
-  height: 300px;
-  width:300px;
-}
