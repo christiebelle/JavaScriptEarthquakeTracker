@@ -32,8 +32,6 @@ const requestCompleteAll = function(){
     const quakesArray = quakes.features;
     displayQuakeData(quakesArray);
     displayQuakeInfo(quakesArray);
-    displayQuakeDataTiny(quakesArray);
-    displayQuakeInfoTiny(quakesArrayTiny);
 };
 
 const displayQuakeData = function(quakesArray){
@@ -50,7 +48,7 @@ const displayQuakeInfo = function (quakesArray) {
   const selectedEarthquake = document.querySelector('select')
   selectedEarthquake.addEventListener('change', function() {
     let quake = quakesArray[this.value]
-    quakeInfoAll(quake)
+    quakeInfo(quake)
   })
 }
 
@@ -83,46 +81,6 @@ const clearContent = function(node){
   }
 }
 
-//TINY EARTHQUAKES
-const displayQuakeDataTiny = function(quakesArray){
-  const quakesArrayTiny = [];
-  quakesArray.forEach(function(quake, index){
-  if(quake.properties.mag < 1.0){
-    quakesArrayTiny.push(quake);
-  };
-  return quakesArrayTiny;
-  });
-  const select = document.getElementById('quakelistTiny-select')
-  quakesArrayTiny.forEach(function(quake, index) {
-    let option = document.createElement('option')
-    option.innerText = quake.properties.place;
-    option.value = index
-    select.appendChild(option)
-  })
-};
-
-const displayQuakeInfoTiny = function (quakesArrayTiny) {
-  const selectedEarthquake = document.querySelector('select')
-  selectedEarthquake.addEventListener('change', function() {
-    let quake = quakesArrayTiny[this.value]
-    quakeInfoTiny(quake)
-  })
-}
-const quakeInfoTiny = function (quake) {
-  const div = document.getElementById('quakeTiny-details')
-  clearContent(div)
-  const quakeEpicentre = document.createElement('p')
-  quakeEpicentre.innerText = `Epicentre: ${quake.properties.place}`
-  const quakeMagnitude = document.createElement('p')
-  quakeMagnitude.innerText = `Magnitude: ${quake.properties.mag}`
-  const quakePage = document.createElement('p')
-  quakePage.innerText = `Further Information: ${quake.properties.url}`
-  div.appendChild(quakeEpicentre);
-  div.appendChild(quakeMagnitude);
-  div.appendChild(quakePage);
-  // addMarker(quake);
-  return div
-}
 
 //SMALL EARTHQUAKES
 const makeRequestSmall = function(api, callback){
