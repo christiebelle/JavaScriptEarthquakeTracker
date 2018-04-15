@@ -47,7 +47,7 @@ const displayQuakeData = function(quakesArray){
 const displayQuakeInfo = function (quakesArray) {
   const selectedEarthquake = document.querySelector('select')
   selectedEarthquake.addEventListener('change', function() {
-    let quake = quakesArray[this.value]
+    let quake = quakesArray[this.value];
     quakeInfo(quake)
   })
 }
@@ -262,7 +262,6 @@ const requestCompleteSig = function(){
     const quakes = JSON.parse(jsonString);
     const quakesArraySig = quakes.features;
     displayQuakeDataSig(quakesArraySig);
-    displayQuakeInfo(quakesArraySig);
 };
 
 const displayQuakeDataSig = function(quakesArraySig){
@@ -271,7 +270,8 @@ const displayQuakeDataSig = function(quakesArraySig){
     let option = document.createElement('option')
     option.innerText = quake.properties.place;
     option.value = index
-    select.appendChild(option)
+    select.appendChild(option);
+    displayQuakeInfo(quakesArraySig);
   })
 }
 
@@ -284,6 +284,8 @@ const displayQuakeInfoSig = function (quakesArraySig) {
 }
 
 const quakeInfoSig = function (quake) {
+  console.log(quake);
+  debugger;
   const div = document.getElementById('quakeSig-details')
   clearContent(div)
   const quakeEpicentre = document.createElement('p')
