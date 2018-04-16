@@ -82,8 +82,8 @@ const clearContent = function(node){
     node.removeChild(node.lastChild);
   }
 }
-//
-//
+
+
 // //SMALL EARTHQUAKES
 // const makeRequestSmall = function(api, callback){
 //   const request = new XMLHttpRequest();
@@ -101,7 +101,6 @@ const clearContent = function(node){
 //     const quakes = JSON.parse(jsonString);
 //     const quakesArraySml = quakes.features;
 //     displayQuakeDataSml(quakesArraySml);
-//     displayQuakeInfoSml(quakesArraySml);
 // };
 //
 // const displayQuakeDataSml = function(quakesArraySml){
@@ -112,6 +111,7 @@ const clearContent = function(node){
 //     option.value = index
 //     select.appendChild(option)
 //   })
+//   displayQuakeInfoSml(quakesArraySml);
 // }
 //
 // const displayQuakeInfoSml = function (quakesArraySml) {
@@ -134,11 +134,11 @@ const clearContent = function(node){
 //   div.appendChild(quakeEpicentre);
 //   div.appendChild(quakeMagnitude);
 //   div.appendChild(quakePage);
-//   // addMarker(quake);
+//   addMarker(quake);
 //   return div
 // }
-//
-//
+
+
 // //MEDIUM EARTHQUAKES
 // const makeRequestMed = function(api, callback){
 //   const request = new XMLHttpRequest();
@@ -263,7 +263,6 @@ const requestCompleteSig = function(){
     const jsonString = this.responseText;
     const quakes = JSON.parse(jsonString);
     const quakesArraySig = quakes.features;
-    console.log(quakesArraySig);
     displayQuakeDataSig(quakesArraySig);
 };
 
