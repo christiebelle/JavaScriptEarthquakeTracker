@@ -1,5 +1,5 @@
 const app = function(){
-
+    //
     // const api = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
     // const apiS = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_month.geojson";
     // const apiM = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson";
@@ -24,7 +24,7 @@ window.addEventListener('load', app);
 //   //tell it to run.
 //   request.send();
 // };
-
+//
 // const requestCompleteAll = function(){
 //   if(this.status !== 200) return;
 //     const jsonString = this.responseText;
@@ -33,14 +33,14 @@ window.addEventListener('load', app);
 //     displayQuakeData(quakesArray);
 //     displayQuakeInfo(quakesArray);
 // };
-
+//
 // const displayQuakeData = function(quakesArray){
 //   const select = document.getElementById('quakelist-select')
 //   quakesArray.forEach(function(quake, index) {
 //     let option = document.createElement('option')
 //     option.innerText = quake.properties.place;
 //     option.value = index
-//     select.appendChild(option)
+//     select.appendChild(option);
 //   })
 // };
 //
@@ -64,7 +64,7 @@ window.addEventListener('load', app);
 //   div.appendChild(quakeEpicentre);
 //   div.appendChild(quakeMagnitude);
 //   div.appendChild(quakePage);
-//   // addMarker(quake);
+//   addMarker(quake);
 //   return div
 // }
 
@@ -72,7 +72,8 @@ const addMarker = function(quake){
   const container = document.getElementById('quake-map')
   const long = quake.geometry.coordinates[0];
   const lat = quake.geometry.coordinates[1];
-  const map = new MapMaker(container, lat, long, 10);
+  console.log(lat, long);
+  const map = new MapMaker(container, lat, long, 5);
   map.addMarker(lat, long)
 }
 
@@ -81,9 +82,9 @@ const clearContent = function(node){
     node.removeChild(node.lastChild);
   }
 }
-
-
-//SMALL EARTHQUAKES
+//
+//
+// //SMALL EARTHQUAKES
 // const makeRequestSmall = function(api, callback){
 //   const request = new XMLHttpRequest();
 //   //open request.
@@ -262,6 +263,7 @@ const requestCompleteSig = function(){
     const jsonString = this.responseText;
     const quakes = JSON.parse(jsonString);
     const quakesArraySig = quakes.features;
+    console.log(quakesArraySig);
     displayQuakeDataSig(quakesArraySig);
 };
 
@@ -272,8 +274,9 @@ const displayQuakeDataSig = function(quakesArraySig){
     option.innerText = quake.properties.place;
     option.value = index
     select.appendChild(option);
-    displayQuakeInfoSig(quakesArraySig);
   })
+  displayQuakeInfoSig(quakesArraySig);
+
 }
 
 const displayQuakeInfoSig = function (quakesArraySig) {
