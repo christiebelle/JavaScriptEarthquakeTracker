@@ -294,7 +294,7 @@ const quakeInfoSig = function (quake) {
   const quakeMagnitude = document.createElement('p')
   quakeMagnitude.innerText = `Magnitude: ${quake.properties.mag}`
   const quakePage = document.createElement('p')
-  quakePage.innerText = `Further Information: ${quake.properties.url}`
+  quakePage.innerHTML = `Further Information: ${quake.properties.url}`
   div.appendChild(quakeEpicentre);
   div.appendChild(quakeMagnitude);
   div.appendChild(quakePage);
